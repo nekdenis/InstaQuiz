@@ -1,0 +1,35 @@
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.github.nekdenis.quiz.AnswerWrapper"
+            />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:foreground="?selectableItemBackground"
+        android:onClick="@{()->item.onClick()}"
+        >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            bind:imageUrl="@{item.url}"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@{item.isRight?@drawable/selected_border_right:@drawable/selected_border_wrong}"
+            bind:visible="@{item.selected}"
+            />
+    </FrameLayout>
+</layout>

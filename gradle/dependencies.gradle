@@ -1,0 +1,38 @@
+def versions = [
+        kotlinVersion     : '1.2.10',
+        supportLibVersion : '27.0.2',
+        rxjava2           : '2.1.5',
+        rxAndroid         : '2.0.1',
+        rxKotlin          : '2.1.0',
+        gsonVersion       : '2.8.2',
+        lastAdapterVersion: '2.0.0',
+        glide             : '3.8.0',
+        androidPlugin     : '3.0.1',
+        binaryPrefs       : '1.0.0-BETA-2'
+]
+
+ext.androidConfig = [
+        compileSdkVersion: 26,
+        buildToolsVersion: '26.0.1',
+        minSdkVersion    : 15,
+        targetSdkVersion : 26
+]
+
+ext.dep = [
+        androidPlugin      : "com.android.tools.build:gradle:$versions.androidPlugin",
+        supportAnnotations : "com.android.support:support-annotations:$versions.supportLibVersion",
+        recyclerView       : "com.android.support:recyclerview-v7:$versions.supportLibVersion",
+        rxjava2            : "io.reactivex.rxjava2:rxjava:$versions.rxjava2",
+        rxandroid          : "io.reactivex.rxjava2:rxandroid:$versions.rxAndroid",
+        rxkotlin           : "io.reactivex.rxjava2:rxkotlin:$versions.rxKotlin",
+        support            : "com.android.support:support-v4:$versions.supportLibVersion",
+        appcompat          : "com.android.support:appcompat-v7:$versions.supportLibVersion",
+        kotlinStdLib       : "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlinVersion",
+        kotlinGradlePlugin : "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlinVersion",
+        junit              : 'junit:junit:4.12',
+        gson               : "com.google.code.gson:gson:$versions.gsonVersion",
+        lastadapter        : "com.github.nitrico.lastadapter:lastadapter:$versions.lastAdapterVersion",
+        glide              : "com.github.bumptech.glide:glide:$versions.glide",
+        dataBindingCompiler: "com.android.databinding:compiler:$versions.androidPlugin",
+        binaryPrefs        : "com.github.iamironz:binaryprefs:$versions.binaryPrefs"
+]

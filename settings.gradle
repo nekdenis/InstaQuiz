@@ -1,0 +1,1 @@
+include ':app', ':quiz', ':repo', ':core', ':coreui'

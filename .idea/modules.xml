@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/core/core.iml" filepath="$PROJECT_DIR$/core/core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/coreui/coreui.iml" filepath="$PROJECT_DIR$/coreui/coreui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/instaquiz.iml" filepath="$PROJECT_DIR$/instaquiz.iml" />
+      <module fileurl="file://$PROJECT_DIR$/quiz/quiz.iml" filepath="$PROJECT_DIR$/quiz/quiz.iml" />
+      <module fileurl="file://$PROJECT_DIR$/repo/repo.iml" filepath="$PROJECT_DIR$/repo/repo.iml" />
+    </modules>
+  </component>
+</project>

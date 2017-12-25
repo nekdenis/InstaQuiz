@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.github.nekdenis.quiz.QuizViewModel"
+            />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".QuizActivity"
+        >
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/question"
+            android:layout_alignParentTop="true"
+            bind:answers="@{vm.question.answers}"
+            bind:asGrid="@{true}"
+            />
+
+        <TextView
+            android:id="@id/question"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/nextButton"
+            android:layout_marginBottom="16dp"
+            android:padding="16dp"
+            android:paddingLeft="32dp"
+            android:paddingRight="32dp"
+            android:text="@{vm.question.description}"
+            android:textSize="24dp"
+            />
+
+        <FrameLayout
+            android:id="@id/nextButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            >
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{()->vm.goToNextQuestion()}"
+                android:text="@string/next"
+                bind:visible="@{vm.nextAvailable}"
+                />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{()->vm.startAgain()}"
+                android:text="@string/restart"
+                bind:visible="@{!vm.nextAvailable}"
+                />
+        </FrameLayout>
+    </RelativeLayout>
+</layout>

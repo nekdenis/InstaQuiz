@@ -1,0 +1,43 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    dataBinding.enabled = true
+    compileSdkVersion androidConfig.compileSdkVersion
+    defaultConfig {
+        applicationId "com.github.nekdenis.instaquiz"
+        minSdkVersion androidConfig.minSdkVersion
+        targetSdkVersion androidConfig.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation project(':quiz')
+    implementation project(':repo')
+    implementation project(':core')
+    implementation project(':coreui')
+    implementation project(':quiz')
+
+    implementation dep.appcompat
+    implementation dep.support
+    implementation dep.kotlinStdLib
+    implementation dep.recyclerView
+    implementation dep.binaryPrefs
+    implementation(dep.lastadapter) {
+        exclude group: "com.android.databinding"
+        exclude group: "org.jetbrains.kotlin"
+        exclude group: "com.android.support"
+    }
+}
