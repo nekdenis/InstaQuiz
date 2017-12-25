@@ -22,7 +22,7 @@ class QuizActivity : AppCompatActivity() {
         val binding: ActivityQuizBinding = DataBindingUtil.setContentView(this, R.layout.activity_quiz)
         (this.applicationContext as App).injector.run {
             //TODO: inject UseCase
-            viewModel = QuizViewModel(QuizUseCaseImpl(quizRepo, answersRepo))
+            viewModel = QuizViewModel(QuizUseCaseImpl(quizRepo, answersRepo, timeProvider))
             binding.vm = viewModel
         }
     }
@@ -38,21 +38,30 @@ class QuizViewModel(
 ) : ViewModel() {
     val question: ObservableField<QuestionWrapper> = ObservableField()
     val nextAvailable: ObservableBoolean = ObservableBoolean(false)
+    val timer: ObservableField<String> = ObservableField("")
+    val overtime: ObservableBoolean = ObservableBoolean(true)
 
     val listener = object : QuizListener {
         override fun selectAnswer(questionId: Int, answerId: Int) {
-            quizUseCase.selectAnswer(questionId, answerId)
-                    .bindSubscribe()
+            if (!overtime.get()) {
+                quizUseCase.selectAnswer(questionId, answerId)
+                        .bindSubscribe()
+            }
         }
     }
 
     init {
         quizUseCase.observeQuestion(listener)
-                .map { question.set(it) }
+                .doOnNext { question.set(it) }
                 .bindSubscribe()
 
         quizUseCase.nextQuestionAvailable()
-                .map { nextAvailable.set(it) }
+                .doOnNext { nextAvailable.set(it) }
+                .bindSubscribe()
+
+        quizUseCase.observeTimer()
+                .doOnNext { overtime.set(it <= 0) }
+                .doOnNext { timer.set(it.toString()) }
                 .bindSubscribe()
     }
 

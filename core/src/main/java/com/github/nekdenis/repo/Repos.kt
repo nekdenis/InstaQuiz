@@ -14,7 +14,8 @@ interface QuizRepo {
 interface AnswersRepo {
     fun observeAnswers(): Observable<AnswersModel>
     fun addAnswer(questionId: Int, answerId: Int): Completable
-    fun currentQuestionId(): Observable<Int>
+    fun observeCurrentQuestionId(): Observable<Int>
     fun incQuestionId(): Completable
     fun resetQuestionId(): Completable
+    fun observeStartTime(): Observable<Long>
 }

@@ -25,6 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/question"
             android:layout_alignParentTop="true"
+            android:clickable="@{!vm.overtime}"
             bind:answers="@{vm.question.answers}"
             bind:asGrid="@{true}"
             />
@@ -33,13 +34,26 @@
             android:id="@id/question"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/nextButton"
+            android:layout_above="@+id/time"
             android:layout_marginBottom="16dp"
+            android:gravity="center"
             android:padding="16dp"
             android:paddingLeft="32dp"
             android:paddingRight="32dp"
             android:text="@{vm.question.description}"
             android:textSize="24dp"
+            />
+
+        <TextView
+            android:id="@id/time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/nextButton"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            android:text="@{vm.timer}"
+            android:textColor="@{vm.overtime?@android:color/holo_red_light:@android:color/holo_green_light}"
+            android:textSize="32dp"
             />
 
         <FrameLayout
